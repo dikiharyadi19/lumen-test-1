@@ -18,10 +18,13 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-
-        $params = explode(",", request()->with);
-
-        $users = $this->model->with($params)->get();
+        $users = $this->model;
+        if(request()->with){
+            $params = explode(",", request()->with);
+            $users = $users->with($params)->get();
+        }else{
+            $users = $this->model->all();
+        }
 
         return $this->returnJson($users);
     }
