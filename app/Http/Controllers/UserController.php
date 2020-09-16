@@ -22,6 +22,7 @@ class UserController extends Controller
         if(request()->with){
             $params = explode(",", request()->with);
             $users = $users->with($params)->get();
+
         }else{
             $users = $this->model->all();
         }
