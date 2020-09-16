@@ -7,6 +7,6 @@ class SecureController extends Controller
 {
 	public function profile(Request $request)
 	{
-		
+		return $request->user();
 	}
 }

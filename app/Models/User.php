@@ -31,5 +31,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $hidden = [
         'password',
+        'token',
+        'device'
     ];
+
+    public function phone()
+    {
+        return $this->hasOne('App\Models\Phone');
+    }
 }
