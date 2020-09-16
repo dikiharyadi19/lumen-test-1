@@ -8,8 +8,8 @@ trait apiJsonReturnTrait
     {
         return response()->json([
             'status'  => $status,
-            'data'  => $data,
             'code'    => $status_code,
+            'data'  => $data,
         ], $status_code);
     }
 }
