@@ -21,7 +21,13 @@ class UserController extends Controller
         $users = $this->model;
         if(request()->with){
             $params = explode(",", request()->with);
-            $users = $users->with($params)->get();
+
+            try{
+                $users = $users->with($params)->get();
+
+            }catch(\Exception $e){
+                return $this->returnJson($users, 500, 'error');
+            }
 
         }else{
             $users = $this->model->all();
