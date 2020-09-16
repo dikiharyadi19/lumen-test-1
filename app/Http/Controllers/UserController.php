@@ -28,9 +28,14 @@ class UserController extends Controller
 
     public function view(Request $request, string $user)
     {
+        $data = $this->model->with('phone')->where('fullname', urldecode($user))->first();
+      
+        if($data){
+            return $this->returnJson($data, 200);    
+        }else{
+            return $this->returnJson($data, 404, 'error');
+        }
         
-        $data = $this->model->with('phone')->where('fullname', urldecode($user))->get();
         
-        return $this->returnJson($data);
     }
 }
